@@ -1,3 +1,7 @@
+"-----------------------------------------------------------------------------"
+"NEOBUNDLE
+"-----------------------------------------------------------------------------"
+
 if has('vim_starting')
 set nocompatible               " Be iMproved
 
@@ -21,8 +25,20 @@ NeoBundle 'flazz/vim-colorschemes'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=gray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgray
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+
+NeoBundle 'https://github.com/cohama/lexima.vim' 
+NeoBundle 'mattn/emmet-vim'
+
 call neobundle#end()
 
     " Required:
@@ -31,8 +47,13 @@ call neobundle#end()
     " If there are uninstalled bundles found on startup,
     " this will conveniently prompt you to install them.
     NeoBundleCheck
+
+"NERD TREE起動ショートカット
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+"-----------------------------------------------------------------------------"
+"set
+"-----------------------------------------------------------------------------"
     "Vim7.4でbackspaceを有効化する"
     set backspace=2
 
@@ -68,17 +89,12 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
     "新しい行のインデントを現在行と同じにする
     set autoindent 
 
-    "バックアップファイルのディレクトリを指定する
-    set backupdir=$HOME/vimbackup
-
     "クリップボードをWindowsと連携する
     set clipboard=unnamed
 
     "vi互換をオフする
     set nocompatible
 
-    "スワップファイル用のディレクトリを指定する
-    set directory=$HOME/vimbackup
 
     "タブの代わりに空白文字を指定する
     set expandtab
@@ -99,10 +115,10 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
     set showmatch
 
     "新しい行を作った時に高度な自動インデントを行う
-    set tabstop=4
+    set tabstop=2
     set autoindent
     set expandtab
-    set shiftwidth=4
+    set shiftwidth=2
 
     " grep検索を設定する
     set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
