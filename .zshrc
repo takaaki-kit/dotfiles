@@ -120,14 +120,22 @@ precmd () {
 RPROMPT="%1(v|%F{green}%1v%f|)"
 
 
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle reset-prompt
+    zle clear-screen
 }
+zle -N peco-select-history
+bindkey '^r' peco-select-history
 
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
 
 
 function agvim () {
