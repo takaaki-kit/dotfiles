@@ -98,3 +98,42 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 #anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+
+
+
+
+# VCSの情報を取得するzshの便利関数 vcs_infoを使う
+autoload -Uz vcs_info
+
+# 表示フォーマットの指定
+# %b ブランチ情報
+# %a アクション名(mergeなど)
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
+RPROMPT="%1(v|%F{green}%1v%f|)"
+
+
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+
+function agvim () {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+
+
+alias ssh=~/dev/bin/ssh-host-color
+compdef _ssh ~/dev/bin/ssh-host-color=ssh

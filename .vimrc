@@ -81,6 +81,8 @@ augroup vimrc
   autocmd! FileType perl setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
   autocmd! FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd! FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd! FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
 augroup END
 
 " autocomplete and history
@@ -129,6 +131,11 @@ nmap g# g#zz
 nmap G Gzz
 "usキーボードで使いやすく
 nmap ; :
+" 検索中の文字列をハイライト
+set hlsearch
+
+" カーソル以下の文字列をハイライト
+nmap ,w #*
 
 " plugins
 "-------------------------------------------------------------------------------
