@@ -245,7 +245,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'itchyny/lightline.vim'
  
 " bufferexplorer"
-NeoBundle 'jlanzarotta/bufexplorer.vim'
+NeoBundle 'jlanzarotta/bufexplorer'
 call neobundle#end()
  
 " Required:
