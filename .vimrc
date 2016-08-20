@@ -72,6 +72,8 @@ augroup END
 "-------------------------------------------------------------------------------
 set autoindent
 set smartindent
+" vimにcoffeeファイルタイプを認識させる
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 "set cindent
 " softtabstopはTabキー押し下げ時の挿入される空白の量，0の場合はtabstopと同じ，BSにも影響する
 set tabstop=2 shiftwidth=2 softtabstop=2
@@ -83,6 +85,7 @@ augroup vimrc
   autocmd! FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
   autocmd! FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd! FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd! FileType coffee setlocal shiftwidth=2 tabstop=2 softtabstop=2 et
 augroup END
 
 " autocomplete and history
@@ -246,6 +249,10 @@ NeoBundle 'itchyny/lightline.vim'
  
 " bufferexplorer"
 NeoBundle 'jlanzarotta/bufexplorer'
+
+
+" coffee script syntax + 自動compile
+NeoBundle 'kchmck/vim-coffee-script'
 call neobundle#end()
  
 " Required:
